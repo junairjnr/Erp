@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(erp)/product/List.jsx", "app/(erp)/product/Edit.jsx", "app/(erp)/product/Create.jsx", "app/(erp)/components/Navbar.jsx", "app/(erp)/components/Sidebar.jsx", "app/(erp)/inventory/page.tsx", "app/(erp)/supplier/List.jsx"],
+  "exclude": ["node_modules"]
+}
