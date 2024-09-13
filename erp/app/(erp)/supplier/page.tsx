@@ -1,6 +1,5 @@
 'use client';
-import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import ListSupplier from "./List";
 import AddSupplier from "./Create";
 import EditSupplier from "./Edit";
@@ -42,7 +41,6 @@ export default function Supplier() {
 
 
     const [addForm, setAddForm] = useState(false)
-    const [editForm, setEditForm] = useState(false)
     const [editingSupplier, setEditingSupplier] = useState(null);
 
     const addSupplier = (newSupplier: any) => {

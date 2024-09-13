@@ -1,6 +1,4 @@
 
-
-import Link from "next/link";
 import { useState } from "react";
 
 export default function CreateProduct({ onCreate, setAddForm }) {
@@ -77,12 +75,8 @@ export default function CreateProduct({ onCreate, setAddForm }) {
                             </div>
 
                         </div>
-
-
                     </div>
                 </div>
-
-
             </form>
         </div>
     )

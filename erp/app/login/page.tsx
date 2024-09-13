@@ -123,7 +123,7 @@ export default function Login() {
                                                 </div>
                                             </form>
                                             <p className="mt-4 text-sm">
-                                                Don't have an account..?{" "}
+                                                Do not have an account..?{" "}
                                                 <span
                                                     className="text-blue-500 cursor-pointer"
                                                     onClick={() => router.push("/registration")}

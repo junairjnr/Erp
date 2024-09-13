@@ -1,6 +1,6 @@
 
 
-export default function ProductListStock({ products, onDelete, onEdit }) {
+export default function ProductListStock({ products, onEdit }) {
     return (
         <div className="w-full">
             <table className="w-full border-collapse border border-slate-400">

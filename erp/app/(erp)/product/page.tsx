@@ -1,6 +1,6 @@
 "use client"
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import ProductList from "./List";
 import CreateProduct from "./Create";
 import EditProduct from "./Edit";
@@ -12,7 +12,6 @@ export default function Product() {
     ]);
 
     const [addForm, setAddForm] = useState(false)
-    const [editForm, setEditForm] = useState(false)
     const [editingProduct, setEditingProduct] = useState(null);
 
     const addProduct = (newProduct: any) => {

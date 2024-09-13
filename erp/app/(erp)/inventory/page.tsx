@@ -23,24 +23,15 @@ export default function Inventory() {
     ]
     );
 
-    const [addForm, setAddForm] = useState(false)
-    const [editForm, setEditForm] = useState(false)
     const [editingProduct, setEditingProduct] = useState(null);
 
     const { setProductes } = useStore();
 
-    const addProduct = (newProduct: any) => {
-        setProducts([...products, { ...newProduct, id: products.length + 1 }]);
-    };
+
 
     const updateProduct = (updatedProduct: any) => {
         setProducts(products.map((prod) => (prod.id === updatedProduct.id ? updatedProduct : prod)));
     };
-
-    const deleteProduct = (id: any) => {
-        setProducts(products.filter((prod) => prod.id !== id));
-    };
-
 
     useEffect(() => {
         setProductes(products)
@@ -50,17 +41,17 @@ export default function Inventory() {
         <div className="w-full h-auto">
             <div className="w-full h-full flex justify-center items-center  bg-gray-200">
                 <div className="bg-white w-[400px] md:w-[800px] h-full flex justify-center items-start flex-col md:rounded-md md:shadow-md">
-                    {!addForm && !editingProduct &&
+                    {!editingProduct &&
                         <Fragment>
                             <div className="w-full flex justify-between items-center p-6">
                                 <h1 className="text-2xl font-semibold pl-6">Product</h1>
                             </div>
                             <div className="px-2 py-2  w-full">
-                                <ProductListSock products={products} onDelete={deleteProduct}
+                                <ProductListSock products={products} 
                                     onEdit={setEditingProduct} />
                             </div>
                         </Fragment>}
-                    {!addForm && editingProduct && <EditProductStock product={editingProduct} onUpdate={updateProduct} setEditingProduct={setEditingProduct} />}
+                    {editingProduct && <EditProductStock product={editingProduct} onUpdate={updateProduct} setEditingProduct={setEditingProduct} />}
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useStore from "@/app/Store";
 import { LuSearch } from "react-icons/lu";
 
@@ -40,7 +40,7 @@ export default function Report() {
                                     <input
                                         className="h-[35px] w-full bg-white text-gray-700  pl-2 outline-none ml-1  rounded-md"
                                         type="text"
-                                        placeholder="search....."
+                                        placeholder="search name or type....."
                                         onChange={(e) => setSearch(e.target.value)}
                                         value={search}
                                     />

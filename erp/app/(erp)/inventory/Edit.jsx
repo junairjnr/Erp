@@ -31,6 +31,7 @@ export default function EditProductStock({ product, onUpdate, setEditingProduct 
                                         type="text"
                                         name="name"
                                         value={name}
+                                        onChange={(e) => setName(e.target.value)}
                                         disabled
                                     />
                                 </div>
@@ -40,6 +41,7 @@ export default function EditProductStock({ product, onUpdate, setEditingProduct 
                                         type="text"
                                         name="price"
                                         value={price}
+                                        onChange={(e) => setPrice(e.target.value)}
                                         disabled
                                     />
                                 </div>
