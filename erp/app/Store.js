@@ -3,6 +3,7 @@ import { create } from 'zustand'
 const useStore = create((set) => ({
     products: [],
     suppliers: [],
+    user:null,
 
     setProductes: (products) => set({ products }),
     setSupplieres: (suppliers) => set({ suppliers }),
@@ -11,6 +12,10 @@ const useStore = create((set) => ({
             product.id === productId ? { ...product, stock: newStock } : product
         ),
     })),
+
+    setUser: (user) => set({ user }),
+
+    logout: () => set({ user: null }),
 }));
 
 export default useStore;

@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
+import useStore from "../Store";
 
 export default function Login() {
     const router = useRouter();
 
+    const user = useStore((state) => state.user);
     const validationSchema = Yup.object({
         username: Yup.string()
             .required("Username is required")
@@ -27,11 +29,11 @@ export default function Login() {
         },
         validationSchema,
         onSubmit: (values) => {
-            const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-            if (storedUser.username && storedUser.password) {
+            // const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+            if (user.username && user.password) {
                 if (
-                    storedUser.username === values.username &&
-                    storedUser.password === values.password
+                    user.username === values.username &&
+                    user.password === values.password
                 ) {
                     toast.success("Login successful!");
                     router.push("/dashboard");

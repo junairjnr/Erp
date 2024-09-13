@@ -6,6 +6,7 @@ import { CiLock } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import useStore from "../Store";
 
 export default function Register() {
     const [username, setUsername] = useState("");
@@ -13,6 +14,7 @@ export default function Register() {
     const [usernameError, setUsernameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const router = useRouter();
+    const setUser = useStore((state) => state.setUser);
 
     const validateForm = () => {
         let isValid = true;
@@ -45,6 +47,8 @@ export default function Register() {
                 "user",
                 JSON.stringify({ username, password })
             );
+            const userData = { username, password }
+            setUser(userData);
             toast.success("Account Created successful");
             router.push("/login");
         } else {

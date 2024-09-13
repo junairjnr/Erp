@@ -7,17 +7,22 @@ import toast from "react-hot-toast";
 import logo from '../../assets/erp-log.png'
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import useStore from "@/app/Store";
 
 export default function Navbar() {
 
+    const logout = useStore((state) => state.logout);
+    const user = useStore((state) => state.user);
+
     const router = useRouter();
     const handleLogOut = () => {
-        localStorage.removeItem("user")
+        localStorage.removeItem("user");
+        logout();
         router.push("/login");
         toast.success("Logout Successfully");
     };
 
-    const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+    // const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
 
 
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -47,8 +52,8 @@ export default function Navbar() {
     return (
         <div className="w-full h-full bg-gray-950 border-b">
             <nav className="w-[450px] md:w-full h-[70px] flex md:justify-between justify-center items-center   border-b border-black">
-               
-               <Link href={"/dashboard"}><Image
+
+                <Link href={"/dashboard"}><Image
                     alt=""
                     src={logo}
                     height={80}
@@ -56,10 +61,10 @@ export default function Navbar() {
                     priority={true}
                     className="ml-5 cursor-pointer object-contain h-auto w-auto"
                 />
-                </Link> 
+                </Link>
                 <div className="flex justify-center items-center flow-row gap-3">
 
-                    <p className="cursor-pointer text-2xl text-white hover:text-gray-400 font-semibold font-sans">Hi, {storedUser.username}</p>
+                    <p className="cursor-pointer text-2xl text-white hover:text-gray-400 font-semibold font-sans">Hi, {user?.username}</p>
                     <p className="cursor-pointer text-4xl text-white hover:text-gray-400 font-bold font-serif"> {greeting}</p>
                 </div>
                 <div className="w-[250px] h-full  justify-between md:flex  hidden items-center p-2  mr-4 text-gray-50">
