@@ -1,23 +1,50 @@
-
 import { useState } from "react";
 
 export default function EditSupplier({ supplier, updateSupplier, setEditingSupplier }) {
 
-    const [name, setName] = useState(supplier.name)
-    const [email, setEmail] = useState(supplier.email)
-    const [phone, setPhone] = useState(supplier.phone)
-    const [place, setplace] = useState(supplier.place)
+    const [name, setName] = useState(supplier.name);
+    const [email, setEmail] = useState(supplier.email);
+    const [phone, setPhone] = useState(supplier.phone);
+    const [place, setPlace] = useState(supplier.place);
+    const [errors, setErrors] = useState({});
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const validatePhone = (phone) => {
+        const phoneRegex = /^[0-9]{10}$/; 
+        return phoneRegex.test(phone);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newCustomer = { ...supplier, name, email, phone, place };
-        updateSupplier(newCustomer);
-        setEditingSupplier(null)
-        setName("");
-        setEmail("");
-        setPhone("");
-        setplace("");
-    }
+        let isValid = true;
+        const newErrors = {};
+
+        if (!validateEmail(email)) {
+            newErrors.email = "Invalid email address";
+            isValid = false;
+        }
+
+        if (!validatePhone(phone)) {
+            newErrors.phone = "Invalid phone number. Should be 10 digits.";
+            isValid = false;
+        }
+
+        if (isValid) {
+            const updatedSupplier = { ...supplier, name, email, phone, place };
+            updateSupplier(updatedSupplier);
+            setEditingSupplier(null);
+            setName("");
+            setEmail("");
+            setPhone("");
+            setPlace("");
+        } else {
+            setErrors(newErrors);
+        }
+    };
 
     return (
         <div className="pt-10">
@@ -28,10 +55,10 @@ export default function EditSupplier({ supplier, updateSupplier, setEditingSuppl
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="w-full h-auto">
-                    <div className="w-full h-full flex justify-center items-center  bg-gray-200">
+                    <div className="w-full h-full flex justify-center items-center bg-gray-200">
                         <div className="bg-white w-[400px] md:w-[800px] h-full flex justify-center items-start flex-col md:rounded-md md:shadow-md">
-                            <div className=" w-full h-full flex justify-center items-center flex-col pt-10">
-                                <div className="w-full h-[40px] flex flex-row  p-10">
+                            <div className="w-full h-full flex justify-center items-center flex-col pt-10">
+                                <div className="w-full h-[40px] flex flex-row p-10">
                                     <label className="pl-2 text-gray-700 w-[150px]">Name</label>
                                     <input className="w-[400px] h-[40px] p-1 outline-none border border-slate-400 rounded-md"
                                         type="text"
@@ -41,60 +68,57 @@ export default function EditSupplier({ supplier, updateSupplier, setEditingSuppl
                                         required
                                     />
                                 </div>
-                                <div className="w-full h-[40px] flex flex-row  p-10">
+                                <div className="w-full h-[40px] flex flex-row p-10">
                                     <label className="pl-2 text-gray-700 w-[150px]">Email</label>
-                                    <input className="w-[400px] h-[40px] p-1 outline-none border border-slate-400 rounded-md"
+                                    <div className="flex flex-col">
+                                    <input className={`w-[400px] h-[40px] p-1 outline-none border rounded-md ${errors.email ? 'border-red-500' : 'border-slate-400'}`}
                                         type="email"
                                         name="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
+                                    {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+                                </div>
                                 </div>
                                 <div className="w-full h-[40px] flex flex-row p-10">
                                     <label className="pl-2 text-gray-700 w-[150px]">Phone</label>
-                                    <input className="w-[400px] h-[40px] p-1 outline-none border border-slate-400 rounded-md"
+                                    <div className="flex flex-col">
+                                    <input className={`w-[400px] h-[40px] p-1 outline-none border rounded-md ${errors.phone ? 'border-red-500' : 'border-slate-400'}`}
                                         type="tel"
                                         name="phone"
                                         value={phone}
                                         onChange={(e) => setPhone(e.target.value)}
                                         required
-
                                     />
+                                    {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
+                                    </div>
                                 </div>
-
                                 <div className="w-full h-[40px] flex flex-row p-10">
                                     <label className="pl-2 text-gray-700 w-[150px]">Place</label>
                                     <input className="w-[400px] h-[40px] p-1 outline-none border border-slate-400 rounded-md"
                                         type="text"
                                         name="place"
                                         value={place}
-                                        onChange={(e) => setplace(e.target.value)}
+                                        onChange={(e) => setPlace(e.target.value)}
                                         required
                                     />
                                 </div>
-
                                 <div className="w-full h-[40px] flex gap-3 justify-start items-center p-14">
-                                    <button className="bg-green-400  h-[50px] w-[150px] rounded-md text-gray-900 hover:text-gray-100 cursor-pointer shadow-md"
+                                    <button className="bg-green-400 h-[50px] w-[150px] rounded-md text-gray-900 hover:text-gray-100 cursor-pointer shadow-md"
                                         type="submit">
                                         Update
                                     </button>
-                                    <button className="bg-red-400  h-[50px] w-[150px] rounded-md text-gray-900 hover:text-gray-100 cursor-pointer shadow-md"
-                                        type="submit" onClick={() => setEditingSupplier(false)}>
+                                    <button className="bg-red-400 h-[50px] w-[150px] rounded-md text-gray-900 hover:text-gray-100 cursor-pointer shadow-md"
+                                        type="button" onClick={() => setEditingSupplier(null)}>
                                         Cancel
                                     </button>
                                 </div>
-
                             </div>
-
                         </div>
-
-
                     </div>
                 </div>
-
-
             </form>
         </div>
-    )
+    );
 }
