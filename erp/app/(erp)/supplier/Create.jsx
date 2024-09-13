@@ -14,7 +14,7 @@ export default function AddSupplier({ onCreate, setAddForm }) {
     };
 
     const validatePhone = (phone) => {
-        const phoneRegex = /^[0-9]{10}$/; 
+        const phoneRegex = /^[0-9]{10}$/;
         return phoneRegex.test(phone);
     };
 
@@ -71,27 +71,27 @@ export default function AddSupplier({ onCreate, setAddForm }) {
                                 <div className="w-full h-[40px] flex flex-row p-10">
                                     <label className="pl-2 text-gray-700 w-[150px]">Email</label>
                                     <div className="flex flex-col">
-                                    <input className={`w-[400px] h-[40px] p-1 outline-none border rounded-md ${errors.email ? 'border-red-500' : 'border-slate-400'}`}
-                                        type="email"
-                                        name="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                    {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
-                                </div>
+                                        <input className={`w-[400px] h-[40px] p-1 outline-none border rounded-md ${errors.email ? 'border-red-500' : 'border-slate-400'}`}
+                                            type="email"
+                                            name="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
+                                        {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+                                    </div>
                                 </div>
                                 <div className="w-full h-[40px] flex flex-row p-10">
                                     <label className="pl-2 text-gray-700 w-[150px]">Phone</label>
                                     <div className="flex flex-col">
-                                    <input className={`w-[400px] h-[40px] p-1 outline-none border rounded-md ${errors.phone ? 'border-red-500' : 'border-slate-400'}`}
-                                        type="tel"
-                                        name="phone"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        required
-                                    />
-                                    {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
+                                        <input className={`w-[400px] h-[40px] p-1 outline-none border rounded-md ${errors.phone ? 'border-red-500' : 'border-slate-400'}`}
+                                            type="tel"
+                                            name="phone"
+                                            value={phone}
+                                            onChange={(e) => setPhone(e.target.value)}
+                                            required
+                                        />
+                                        {errors.phone && <p className="text-red-500 text-xs">{errors.phone}</p>}
                                     </div>
                                 </div>
                                 <div className="w-full h-[40px] flex flex-row p-10">
