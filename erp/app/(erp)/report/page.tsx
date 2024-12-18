@@ -105,9 +105,9 @@ export default function Report() {
     });
 
     return (
-        <div className="w-full h-auto p-4 md:p-5">
+        <div className="h-auto p-4 md:p-5  bg-gray-200">
             <div className="w-full h-full flex justify-center items-center bg-gray-200">
-                <div className="bg-white w-full max-w-4xl p-6 rounded-md shadow-md">
+                <div className="bg-white w-full max-w-3xl p-6 rounded-md shadow-md ">
                     {/* Header Section */}
                     <div className="w-full flex justify-between items-center mb-6">
                         <h1 className="text-xl md:text-2xl font-semibold">Product Report</h1>
