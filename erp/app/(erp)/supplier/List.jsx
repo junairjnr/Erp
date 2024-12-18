@@ -18,8 +18,8 @@ export default function ListSupplier({ supplier, onEdit, onDelete }) {
                         <tr key={item.id}>
                             <td className="py-2 px-2 text-center">{index + 1}</td>
                             <td className="py-2 px-2">{item.name}</td>
+                            <td className="py-2 ">{item.phone}</td>
                             <td className="py-2 px-2">{item.email}</td>
-                            <td className="py-2 px-2">{item.phone}</td>
                             <td className="py-2 px-2">{item.place}</td>
                             <td className="flex gap-3 items-center p-2 text-center">
                                 <button
